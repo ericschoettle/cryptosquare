@@ -1,5 +1,6 @@
 function Cryptosquare(string) {
-  var lowerCase = string.replace(/\s/g,"").toLowerCase().split("");
+  var dePunctuate = string.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+  var lowerCase = dePunctuate.replace(/\s/g,"").toLowerCase().split("");
   var arraySize = Math.ceil(Math.sqrt(lowerCase.length));
   var squareArray = [];
   for (var i = 0; i < lowerCase.length; i+=arraySize) {
@@ -7,7 +8,7 @@ function Cryptosquare(string) {
   }
   var cryptoString = "";
   for (var i = 0; i < arraySize; i++) {
-    for (var j = 0; j < arraySize; j++) {
+    for (var j = 0; j < lowerCase.length/arraySize; j++) {
       if (squareArray[j][i]) {
         cryptoString = cryptoString + squareArray[j][i];
       }
@@ -20,4 +21,4 @@ function Cryptosquare(string) {
   return cryptoStringDivided;
 }
 
-console.log(Cryptosquare("here is a big long sentence THAT rocks"));
+console.log(Cryptosquare("this is fat abc"));
